@@ -27,6 +27,10 @@ public class Stack<T> {
         return item;
     }
 
+    public T getTop() {
+        return topNode.item;
+    }
+
     public Integer size() {
         return size;
     }
