@@ -28,6 +28,7 @@ public class Stack<T> {
 
     private Node<T> topNode = null;
     private Integer size = 0;
+    private Node<T> bottomNode = null;
 
     private class Node<J> {
         J item;
@@ -39,6 +40,8 @@ public class Stack<T> {
         topNode = new Node<>();
         topNode.item = item;
         topNode.prevNode = orgTopNode;
+        if (orgTopNode == null)
+            bottomNode = topNode;
         size++;
     }
 
@@ -53,6 +56,10 @@ public class Stack<T> {
 
     public T getTop() {
         return topNode.item;
+    }
+
+    public T getBottom() {
+        return bottomNode.item;
     }
 
     public Integer size() {
