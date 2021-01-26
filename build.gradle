@@ -1,14 +1,19 @@
 plugins {
-    id 'java'
-    id 'application'
+    // id 'java'
+    // id 'application'
     id 'jacoco'
     id 'pmd'
     id 'checkstyle'
+    id 'java-library'
+    id 'maven-publish'
 }
 
-mainClassName = 'com.weldbit.algo.Algo'
+// mainClassName = 'com.weldbit.algo.Algo'
+version = '0.0.1'
+group = 'com.weldbit'
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
@@ -24,7 +29,6 @@ checkstyle {
 }
 
 dependencies {
-    implementation "joda-time:joda-time:2.2"
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.7.0")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.7.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.0")
@@ -58,3 +62,18 @@ jacocoTestCoverageVerification {
 check.dependsOn jacocoTestCoverageVerification
 project.checkstyle.maxWarnings = 0
 project.checkstyle.maxErrors = 0
+
+publishing {
+    publications {
+        algo(MavenPublication) {
+            components.java
+            artifact file("$buildDir/libs/algo-${version}.jar")
+        }
+    }
+    repositories {
+        maven {
+            name = "myRepo"
+            url = uri("$projectDir/../../.m2/repository")
+        }
+    }
+}
