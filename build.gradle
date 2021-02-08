@@ -10,7 +10,7 @@ plugins {
 
 // mainClassName = 'com.weldbit.algo.Algo'
 version = '0.0.1'
-group = 'com.weldbit'
+group = 'com.weldbit.algo'
 
 repositories {
     mavenLocal()
